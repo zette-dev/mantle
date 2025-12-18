@@ -425,19 +425,52 @@ After creating all todo files, present comprehensive summary:
 
 ```
 
-### 7. Playwright Testing (Optional)
+### 7. End-to-End Testing (Optional)
+
+<detect_project_type>
+
+**First, detect the project type from PR files:**
+
+| Indicator | Project Type |
+|-----------|--------------|
+| `*.xcodeproj`, `*.xcworkspace`, `Package.swift` (iOS) | iOS/macOS |
+| `Gemfile`, `package.json`, `app/views/*`, `*.html.*` | Web |
+| Both iOS files AND web files | Hybrid (test both) |
+
+</detect_project_type>
 
 <offer_testing>
-After presenting the Summary Report, ask the user:
 
-**"Want to run Playwright tests on the affected pages?"**
+After presenting the Summary Report, offer appropriate testing based on project type:
+
+**For Web Projects:**
+```markdown
+**"Want to run Playwright browser tests on the affected pages?"**
 1. Yes - run `/playwright-test`
-2. No - skip to next steps
+2. No - skip
+```
+
+**For iOS Projects:**
+```markdown
+**"Want to run Xcode simulator tests on the app?"**
+1. Yes - run `/xcode-test`
+2. No - skip
+```
+
+**For Hybrid Projects (e.g., Rails + Hotwire Native):**
+```markdown
+**"Want to run end-to-end tests?"**
+1. Web only - run `/playwright-test`
+2. iOS only - run `/xcode-test`
+3. Both - run both commands
+4. No - skip
+```
+
 </offer_testing>
 
-#### If User Accepts:
+#### If User Accepts Web Testing:
 
-Spawn a subagent to run the tests (preserves main context):
+Spawn a subagent to run Playwright tests (preserves main context):
 
 ```
 Task general-purpose("Run /playwright-test for PR #[number]. Test all affected pages, check for console errors, handle failures by creating todos and fixing.")
@@ -452,7 +485,28 @@ The subagent will:
 6. Create P1 todos for any failures
 7. Fix and retry until all tests pass
 
-**Alternatively**, user can run standalone: `/playwright-test [PR number]`
+**Standalone:** `/playwright-test [PR number]`
+
+#### If User Accepts iOS Testing:
+
+Spawn a subagent to run Xcode tests (preserves main context):
+
+```
+Task general-purpose("Run /xcode-test for scheme [name]. Build for simulator, install, launch, take screenshots, check for crashes.")
+```
+
+The subagent will:
+1. Verify XcodeBuildMCP is installed
+2. Discover project and schemes
+3. Build for iOS Simulator
+4. Install and launch app
+5. Take screenshots of key screens
+6. Capture console logs for errors
+7. Pause for human verification (Sign in with Apple, push, IAP)
+8. Create P1 todos for any failures
+9. Fix and retry until all tests pass
+
+**Standalone:** `/xcode-test [scheme]`
 
 ### Important: P1 Findings Block Merge
 
