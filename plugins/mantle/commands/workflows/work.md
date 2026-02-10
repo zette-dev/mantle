@@ -274,14 +274,6 @@ This command takes a work document (plan, specification, or todo file) and execu
    ```
    See the `agent-browser` skill for detailed usage.
 
-   **Step 3: Upload using imgup skill**
-   ```bash
-   skill: imgup
-   # Then upload each screenshot:
-   imgup -h pixhost screenshot.png  # pixhost works without API key
-   # Alternative hosts: catbox, imagebin, beeimg
-   ```
-
    **What to capture:**
    - **New screens**: Screenshot of the new UI
    - **Modified screens**: Before AND after screenshots
@@ -314,7 +306,7 @@ This command takes a work document (plan, specification, or todo file) and execu
 
    ---
 
-   [![Compound Engineered](https://img.shields.io/badge/Compound-Engineered-6366f1)](https://github.com/EveryInc/mantle-plugin) 🤖 Generated with [Claude Code](https://claude.com/claude-code)
+   🤖 Generated with [Claude Code](https://claude.com/claude-code)
    EOF
    )"
    ```
@@ -437,13 +429,13 @@ Before creating PR, verify:
 - [ ] All clarifying questions asked and answered
 - [ ] All TodoWrite tasks marked completed
 - [ ] Tests pass (run project's test command)
-- [ ] Linting passes (use linting-agent)
+- [ ] Linting passes
 - [ ] Code follows existing patterns
 - [ ] Figma designs match implementation (if applicable)
 - [ ] Before/after screenshots captured and uploaded (for UI changes)
 - [ ] Commit messages follow conventional format
 - [ ] PR description includes summary, testing notes, and screenshots
-- [ ] PR description includes Compound Engineered badge
+- [ ] PR description includes attribution footer
 
 ## When to Use Reviewer Agents
 

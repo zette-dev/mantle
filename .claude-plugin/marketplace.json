@@ -31,9 +31,9 @@
       "source": "./plugins/mantle"
     },
     {
-      "name": "mantle-dart",
-      "description": "Dart framework plugin for mantle. 2 agents and 1 skill for Dart code review, linting, and best practices.",
-      "version": "1.0.0",
+      "name": "mantle-flutter",
+      "description": "Flutter framework plugin for mantle. Includes 1 skill with conventions, state management, navigation, and testing references.",
+      "version": "1.1.0",
       "author": {
         "name": "Nate Frechette",
         "url": "https://github.com/natefrechette",
@@ -41,12 +41,35 @@
       },
       "homepage": "https://github.com/zette-dev/mantle-plugin",
       "tags": [
+        "flutter",
         "dart",
         "mantle",
         "code-review",
-        "linting"
+        "state-management",
+        "riverpod",
+        "gorouter"
       ],
-      "source": "./plugins/mantle-dart"
+      "source": "./plugins/mantle-flutter"
+    },
+    {
+      "name": "mantle-terraform",
+      "description": "Terraform framework plugin for mantle. Includes 1 skill with Terragrunt architecture, service patterns, module design, and CI/CD references.",
+      "version": "1.1.0",
+      "author": {
+        "name": "Nate Frechette",
+        "url": "https://github.com/natefrechette",
+        "email": "nate@zette.dev"
+      },
+      "homepage": "https://github.com/zette-dev/mantle-plugin",
+      "tags": [
+        "terraform",
+        "terragrunt",
+        "aws",
+        "mantle",
+        "infrastructure",
+        "iac"
+      ],
+      "source": "./plugins/mantle-terraform"
     }
   ]
 }

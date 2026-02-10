@@ -1,70 +1,44 @@
 # mantle-terraform
 
-Terraform framework plugin for mantle. Includes 4 specialized agents and 1 skill for Terraform code review, drift detection, security scanning, linting, and best practices.
+Terraform framework plugin for mantle. Provides a best-practices skill for production-grade AWS infrastructure with Terraform and Terragrunt.
 
 ## Components
 
-### Agents
+| Type | Count | Description |
+|------|-------|-------------|
+| Skills | 1 | Terraform best practices reference with 4 reference files |
 
-All agents are located in the `agents/review/` directory.
+## Skills
 
-| Agent | Model | Description |
-|-------|-------|-------------|
-| terraform-reviewer | inherit | Quality standards reviewer for module composition, naming conventions, lifecycle rules, and Terraform best practices. Produces PASS/FAIL verdicts. |
-| terraform-drift | inherit | Drift detector that compares `terraform plan` output against expected changes, identifies state conflicts, and flags resources changed outside of Terraform. |
-| terraform-security | inherit | Security scanner that checks S3 buckets, security groups, IAM policies, encryption, logging, and network exposure. Suggests running tfsec and checkov. |
-| terraform-lint | haiku | Lightweight linter that runs `terraform fmt -check`, `terraform validate`, and `tflint` to report formatting issues and validation errors. |
+### terraform-best-practices
 
-### Skills
+A background reference skill (auto-loaded by Claude when working with Terraform/Terragrunt) covering infrastructure standards across four areas:
 
-| Skill | Description |
-|-------|-------------|
-| terraform-best-practices | Comprehensive reference for production-grade Terraform covering module design, state management, provider configuration, security hardening, and workspace strategies. |
-
-#### Skill Reference Files
-
-The `terraform-best-practices` skill includes detailed reference guides:
-
-- **modules.md** - Module structure, inputs/outputs, nested modules, versioning, registry modules, and when to create a module
-- **state.md** - Remote state backends (S3, GCS), state locking, state isolation per environment, terraform import, state mv/rm
-- **providers.md** - Provider configuration, version constraints, multi-region deployments, aliases, and required_providers
-- **security.md** - IAM best practices, encryption patterns, network security, secrets management, and compliance checking
-- **workspaces.md** - Workspace strategies (per-environment vs per-component), workspace vs directory isolation, and CI/CD patterns
+| Reference | Topics |
+|-----------|--------|
+| [architecture.md](skills/terraform-best-practices/references/architecture.md) | Folder structure, configuration hierarchy (root.hcl, env.hcl, secrets), shared infrastructure |
+| [services.md](skills/terraform-best-practices/references/services.md) | ECS Fargate, RDS, S3+CloudFront, VPC, Sentry patterns with security and IAM |
+| [modules.md](skills/terraform-best-practices/references/modules.md) | Community modules, environment-agnostic design, security groups, tagging standards |
+| [cicd.md](skills/terraform-best-practices/references/cicd.md) | GitHub Actions, Terraform-managed secrets, deployment workflows, derivation chains |
 
 ## Installation
 
 Install via the mantle marketplace:
 
 ```bash
-claude /plugin install mantle-terraform
+claude /install-plugin mantle-terraform
 ```
 
-## Usage
+## How It Works
 
-### Agents
-
-```bash
-# Run a quality review on your Terraform code
-claude agent terraform-reviewer "Review my Terraform configuration"
-
-# Check for infrastructure drift
-claude agent terraform-drift "Analyze the terraform plan output"
-
-# Scan for security issues
-claude agent terraform-security "Scan this configuration for security problems"
-
-# Lint Terraform files
-claude agent terraform-lint "Check formatting and validation"
-```
-
-### Skills
-
-```bash
-# Access Terraform best practices
-claude skill terraform-best-practices
-```
+The skill has `user-invocable: false` set, meaning Claude loads it automatically when working on Terraform/Terragrunt configurations. The skill description is always in context, and Claude reads the relevant reference files on demand based on the task.
 
 ## Requirements
 
-- Terraform CLI installed (for lint and drift agents)
-- Optional: tfsec, checkov, tflint, terrascan for extended security scanning
+- Terraform CLI installed
+- Terragrunt CLI installed
+
+## Author
+
+Nate Frechette (nate@zette.dev)
+https://github.com/natefrechette

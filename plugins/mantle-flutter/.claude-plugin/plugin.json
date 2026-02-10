@@ -1,7 +1,7 @@
 {
   "name": "mantle-flutter",
-  "version": "1.0.0",
-  "description": "Flutter framework plugin for mantle. Scaffold — agents and skills to be added.",
+  "version": "1.1.0",
+  "description": "Flutter framework plugin for mantle. Includes 1 skill with conventions, state management, navigation, and testing references.",
   "author": {
     "name": "Nate Frechette",
     "email": "nate@zette.dev",

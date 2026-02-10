@@ -1,7 +1,7 @@
 {
   "name": "mantle-terraform",
-  "version": "1.0.0",
-  "description": "Terraform framework plugin for mantle. Scaffold — agents and skills to be added.",
+  "version": "1.1.0",
+  "description": "Terraform framework plugin for mantle. Includes 1 skill with Terragrunt architecture, service patterns, module design, and CI/CD references.",
   "author": {
     "name": "Nate Frechette",
     "email": "nate@zette.dev",
