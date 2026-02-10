@@ -12,7 +12,7 @@
     {
       "name": "mantle",
       "description": "AI-powered development tools that get smarter with every use. Make each unit of engineering work easier than the last. Includes 20 specialized agents, 26 commands, and 12 skills.",
-      "version": "3.0.0",
+      "version": "0.0.1",
       "author": {
         "name": "Nate Frechette",
         "url": "https://github.com/natefrechette",
@@ -33,7 +33,7 @@
     {
       "name": "mantle-flutter",
       "description": "Flutter framework plugin for mantle. Includes 1 skill with conventions, state management, navigation, and testing references.",
-      "version": "1.1.0",
+      "version": "0.0.1",
       "author": {
         "name": "Nate Frechette",
         "url": "https://github.com/natefrechette",
@@ -54,7 +54,7 @@
     {
       "name": "mantle-terraform",
       "description": "Terraform framework plugin for mantle. Includes 1 skill with Terragrunt architecture, service patterns, module design, and CI/CD references.",
-      "version": "1.1.0",
+      "version": "0.0.1",
       "author": {
         "name": "Nate Frechette",
         "url": "https://github.com/natefrechette",
