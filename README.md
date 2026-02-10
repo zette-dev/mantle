@@ -37,5 +37,3 @@ Compound engineering inverts this. 80% is in planning and review, 20% is in exec
 ## Learn More
 
 - [Full component reference](plugins/mantle/README.md) - all agents, commands, skills
-- [Compound engineering: how Every codes with agents](https://every.to/chain-of-thought/mantle-how-every-codes-with-agents)
-- [The story behind compounding engineering](https://every.to/source-code/my-ai-had-already-fixed-the-code-before-i-saw-it)
