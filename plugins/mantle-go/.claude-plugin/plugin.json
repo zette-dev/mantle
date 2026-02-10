@@ -1,0 +1,11 @@
+{
+  "name": "mantle-go",
+  "version": "1.0.0",
+  "description": "Go framework plugin for mantle. Scaffold — agents and skills to be added.",
+  "author": {
+    "name": "Nate Frechette",
+    "email": "nate@zette.dev",
+    "url": "https://github.com/natefrechette"
+  },
+  "keywords": ["go", "golang", "mantle", "code-review", "concurrency"]
+}

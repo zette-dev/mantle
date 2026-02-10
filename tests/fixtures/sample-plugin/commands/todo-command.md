@@ -1,5 +1,5 @@
 ---
-name: workflows:plan
+name: mantle:plan
 description: Create a structured plan from requirements
 allowed-tools: Question, TodoWrite, TodoRead
 ---

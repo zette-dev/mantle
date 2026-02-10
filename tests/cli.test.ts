@@ -55,7 +55,7 @@ describe("CLI", () => {
       throw new Error(`CLI failed (exit ${exitCode}).\nstdout: ${stdout}\nstderr: ${stderr}`)
     }
 
-    expect(stdout).toContain("Installed compound-engineering")
+    expect(stdout).toContain("Installed mantle")
     expect(await exists(path.join(tempRoot, "opencode.json"))).toBe(true)
     expect(await exists(path.join(tempRoot, ".opencode", "agents", "repo-research-analyst.md"))).toBe(true)
     expect(await exists(path.join(tempRoot, ".opencode", "agents", "security-sentinel.md"))).toBe(true)
@@ -94,7 +94,7 @@ describe("CLI", () => {
       throw new Error(`CLI failed (exit ${exitCode}).\nstdout: ${stdout}\nstderr: ${stderr}`)
     }
 
-    expect(stdout).toContain("Installed compound-engineering")
+    expect(stdout).toContain("Installed mantle")
     // OpenCode global config lives at ~/.config/opencode per XDG spec
     expect(await exists(path.join(tempRoot, ".config", "opencode", "opencode.json"))).toBe(true)
     expect(await exists(path.join(tempRoot, ".config", "opencode", "agents", "repo-research-analyst.md"))).toBe(true)
@@ -129,7 +129,7 @@ describe("CLI", () => {
     const workspaceRoot = await fs.mkdtemp(path.join(os.tmpdir(), "cli-github-workspace-"))
     const repoRoot = await fs.mkdtemp(path.join(os.tmpdir(), "cli-github-repo-"))
     const fixtureRoot = path.join(import.meta.dir, "fixtures", "sample-plugin")
-    const pluginRoot = path.join(repoRoot, "plugins", "compound-engineering")
+    const pluginRoot = path.join(repoRoot, "plugins", "mantle")
 
     await fs.mkdir(path.dirname(pluginRoot), { recursive: true })
     await fs.cp(fixtureRoot, pluginRoot, { recursive: true })
@@ -152,7 +152,7 @@ describe("CLI", () => {
       "run",
       path.join(projectRoot, "src", "index.ts"),
       "install",
-      "compound-engineering",
+      "mantle",
       "--to",
       "opencode",
     ], {
@@ -174,7 +174,7 @@ describe("CLI", () => {
       throw new Error(`CLI failed (exit ${exitCode}).\nstdout: ${stdout}\nstderr: ${stderr}`)
     }
 
-    expect(stdout).toContain("Installed compound-engineering")
+    expect(stdout).toContain("Installed mantle")
     // OpenCode global config lives at ~/.config/opencode per XDG spec
     expect(await exists(path.join(tempRoot, ".config", "opencode", "opencode.json"))).toBe(true)
     expect(await exists(path.join(tempRoot, ".config", "opencode", "agents", "repo-research-analyst.md"))).toBe(true)
@@ -208,7 +208,7 @@ describe("CLI", () => {
       throw new Error(`CLI failed (exit ${exitCode}).\nstdout: ${stdout}\nstderr: ${stderr}`)
     }
 
-    expect(stdout).toContain("Converted compound-engineering")
+    expect(stdout).toContain("Converted mantle")
     expect(await exists(path.join(tempRoot, "opencode.json"))).toBe(true)
   })
 
@@ -241,7 +241,7 @@ describe("CLI", () => {
       throw new Error(`CLI failed (exit ${exitCode}).\nstdout: ${stdout}\nstderr: ${stderr}`)
     }
 
-    expect(stdout).toContain("Converted compound-engineering")
+    expect(stdout).toContain("Converted mantle")
     expect(stdout).toContain(codexRoot)
     expect(await exists(path.join(codexRoot, "prompts", "workflows-review.md"))).toBe(true)
     expect(await exists(path.join(codexRoot, "skills", "workflows-review", "SKILL.md"))).toBe(true)
@@ -281,7 +281,7 @@ describe("CLI", () => {
       throw new Error(`CLI failed (exit ${exitCode}).\nstdout: ${stdout}\nstderr: ${stderr}`)
     }
 
-    expect(stdout).toContain("Installed compound-engineering")
+    expect(stdout).toContain("Installed mantle")
     expect(stdout).toContain(codexRoot)
     expect(await exists(path.join(codexRoot, "prompts", "workflows-review.md"))).toBe(true)
     expect(await exists(path.join(codexRoot, "skills", "workflows-review", "SKILL.md"))).toBe(true)

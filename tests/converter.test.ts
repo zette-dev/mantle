@@ -15,7 +15,7 @@ describe("convertClaudeToOpenCode", () => {
       permissions: "from-commands",
     })
 
-    expect(bundle.config.command?.["workflows:review"]).toBeDefined()
+    expect(bundle.config.command?.["mantle:review"]).toBeDefined()
     expect(bundle.config.command?.["plan_review"]).toBeDefined()
 
     const permission = bundle.config.permission as Record<string, string | Record<string, string>>
@@ -70,7 +70,7 @@ describe("convertClaudeToOpenCode", () => {
     expect(parsed.data.model).toBe("anthropic/claude-sonnet-4-20250514")
     expect(parsed.data.temperature).toBe(0.1)
 
-    const modelCommand = bundle.config.command?.["workflows:work"]
+    const modelCommand = bundle.config.command?.["mantle:work"]
     expect(modelCommand?.model).toBe("openai/gpt-4o")
   })
 

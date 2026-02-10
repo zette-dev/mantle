@@ -1,0 +1,11 @@
+{
+  "name": "mantle-railway",
+  "version": "1.0.0",
+  "description": "Railway deployment plugin for mantle. Scaffold — agents and skills to be added.",
+  "author": {
+    "name": "Nate Frechette",
+    "email": "nate@zette.dev",
+    "url": "https://github.com/natefrechette"
+  },
+  "keywords": ["railway", "deployment", "mantle", "infrastructure", "nixpacks"]
+}

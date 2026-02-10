@@ -1,0 +1,11 @@
+{
+  "name": "mantle-terraform",
+  "version": "1.0.0",
+  "description": "Terraform framework plugin for mantle. Scaffold — agents and skills to be added.",
+  "author": {
+    "name": "Nate Frechette",
+    "email": "nate@zette.dev",
+    "url": "https://github.com/natefrechette"
+  },
+  "keywords": ["terraform", "iac", "mantle", "code-review", "security", "infrastructure"]
+}

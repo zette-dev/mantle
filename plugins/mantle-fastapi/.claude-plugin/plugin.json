@@ -1,0 +1,11 @@
+{
+  "name": "mantle-fastapi",
+  "version": "1.0.0",
+  "description": "FastAPI framework plugin for mantle. Scaffold — agents and skills to be added.",
+  "author": {
+    "name": "Nate Frechette",
+    "email": "nate@zette.dev",
+    "url": "https://github.com/natefrechette"
+  },
+  "keywords": ["python", "fastapi", "mantle", "code-review", "async"]
+}

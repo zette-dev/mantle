@@ -1,0 +1,13 @@
+{
+  "name": "mantle-flutter",
+  "version": "1.0.0",
+  "description": "Flutter framework plugin for mantle. Scaffold — agents and skills to be added.",
+  "author": {
+    "name": "Nate Frechette",
+    "email": "nate@zette.dev",
+    "url": "https://github.com/natefrechette"
+  },
+  "homepage": "https://github.com/zette-dev/mantle-plugin",
+  "repository": "https://github.com/zette-dev/mantle-plugin",
+  "keywords": ["flutter", "mantle", "code-review", "widgets", "state-management"]
+}

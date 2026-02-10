@@ -13,7 +13,7 @@ describe("loadClaudePlugin", () => {
   test("loads manifest, agents, commands, skills, hooks", async () => {
     const plugin = await loadClaudePlugin(fixtureRoot)
 
-    expect(plugin.manifest.name).toBe("compound-engineering")
+    expect(plugin.manifest.name).toBe("mantle")
     expect(plugin.agents.length).toBe(2)
     expect(plugin.commands.length).toBe(6)
     expect(plugin.skills.length).toBe(1)
@@ -23,7 +23,7 @@ describe("loadClaudePlugin", () => {
     const researchAgent = plugin.agents.find((agent) => agent.name === "repo-research-analyst")
     expect(researchAgent?.capabilities).toEqual(["Capability A", "Capability B"])
 
-    const reviewCommand = plugin.commands.find((command) => command.name === "workflows:review")
+    const reviewCommand = plugin.commands.find((command) => command.name === "mantle:review")
     expect(reviewCommand?.allowedTools).toEqual([
       "Read",
       "Write",
@@ -43,13 +43,13 @@ describe("loadClaudePlugin", () => {
     const skillCommand = plugin.commands.find((command) => command.name === "create-agent-skill")
     expect(skillCommand?.allowedTools).toEqual(["Skill(create-agent-skills)"])
 
-    const modelCommand = plugin.commands.find((command) => command.name === "workflows:work")
+    const modelCommand = plugin.commands.find((command) => command.name === "mantle:work")
     expect(modelCommand?.allowedTools).toEqual(["WebFetch"])
 
     const patternCommand = plugin.commands.find((command) => command.name === "report-bug")
     expect(patternCommand?.allowedTools).toEqual(["Read(.env)", "Bash(git:*)"])
 
-    const planCommand = plugin.commands.find((command) => command.name === "workflows:plan")
+    const planCommand = plugin.commands.find((command) => command.name === "mantle:plan")
     expect(planCommand?.allowedTools).toEqual(["Question", "TodoWrite", "TodoRead"])
 
     expect(plugin.mcpServers?.context7?.url).toBe("https://mcp.context7.com/mcp")

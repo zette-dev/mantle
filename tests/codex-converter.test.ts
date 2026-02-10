@@ -18,7 +18,7 @@ const fixturePlugin: ClaudePlugin = {
   ],
   commands: [
     {
-      name: "workflows:plan",
+      name: "mantle:plan",
       description: "Planning command",
       argumentHint: "[FOCUS]",
       model: "inherit",
@@ -142,7 +142,7 @@ Task best-practices-researcher(topic)`,
 
 1. Run /deepen-plan to enhance
 2. Run /plan_review for feedback
-3. Start /workflows:work to implement
+3. Start /mantle:work to implement
 
 Don't confuse with file paths like /tmp/output.md or /dev/null.`,
           sourcePath: "/tmp/plugin/commands/plan.md",

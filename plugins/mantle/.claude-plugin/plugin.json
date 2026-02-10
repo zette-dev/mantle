@@ -1,0 +1,31 @@
+{
+  "name": "mantle",
+  "version": "3.0.0",
+  "description": "AI-powered development tools. 13 agents, 6 commands, 11 skills, 1 MCP server for code review, research, and workflow automation.",
+  "author": {
+    "name": "Nate Frechette",
+    "email": "nate@zette.dev",
+    "url": "https://github.com/natefrechette"
+  },
+  "homepage": "https://github.com/zette-dev/mantle-plugin",
+  "repository": "https://github.com/zette-dev/mantle-plugin",
+  "license": "MIT",
+  "keywords": [
+    "ai-powered",
+    "mantle",
+    "workflow-automation",
+    "code-review",
+    "knowledge-management",
+    "image-generation",
+    "agent-browser",
+    "browser-automation",
+    "multi-agent",
+    "planning"
+  ],
+  "mcpServers": {
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp"
+    }
+  }
+}
