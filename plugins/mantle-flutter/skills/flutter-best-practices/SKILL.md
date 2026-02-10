@@ -16,6 +16,7 @@ Load the relevant reference based on the task at hand:
 - [state-management.md](./references/state-management.md) - Riverpod provider types, naming, widget usage, and async patterns
 - [navigation.md](./references/navigation.md) - GoRouter type-safe routing, shell routes, and router provider patterns
 - [testing.md](./references/testing.md) - Testing philosophy, structure, mocking patterns, provider testing, and coverage
+- [dev-workflow.md](./references/dev-workflow.md) - Simulator testing with Marionette MCP: hot reload, screenshots, widget tree, UI interaction
 
 ## Quick Reference
 
@@ -45,3 +46,10 @@ Load the relevant reference based on the task at hand:
 - Understand test cases before writing - each test validates specific behavior
 - Unit tests first (100% coverage target on providers)
 - All mocks in `test/helpers/mock_providers.dart`
+
+### Simulator Testing
+
+- Use the **Marionette Flutter MCP** to test features in the running simulator
+- Check the project Makefile for the command to start the app (wraps [run-debug-mcp.sh](./scripts/run-debug-mcp.sh))
+- Read `.marionette_uri` to `connect`, then use MCP tools: `hot_reload`, `take_screenshots`, `get_interactive_elements`, `tap`, `enter_text`, `scroll_to`, `get_logs`
+- After every code change: hot reload, navigate to affected screen, screenshot to verify
