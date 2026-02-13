@@ -12,7 +12,7 @@
     {
       "name": "mantle",
       "description": "AI-powered development tools that get smarter with every use. Make each unit of engineering work easier than the last. Includes 20 specialized agents, 26 commands, and 12 skills.",
-      "version": "0.0.1",
+      "version": "0.0.2",
       "author": {
         "name": "Nate Frechette",
         "url": "https://github.com/natefrechette",

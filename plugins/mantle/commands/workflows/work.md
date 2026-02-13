@@ -62,7 +62,7 @@ This command takes a work document (plan, specification, or todo file) and execu
    git pull origin [default_branch]
    git checkout -b feature-branch-name
    ```
-   Use a meaningful name based on the work (e.g., `feat/user-authentication`, `fix/email-validation`).
+   **Branch naming:** If the work originates from a Linear issue, use `get_issue_git_branch_name` from the Linear MCP to get the branch name. Otherwise, use a meaningful name based on the work (e.g., `feat/user-authentication`, `fix/email-validation`).
 
    **Option B: Use a worktree (recommended for parallel development)**
    ```bash
@@ -245,6 +245,8 @@ This command takes a work document (plan, specification, or todo file) and execu
    > Known issues: Email validation not yet wired to frontend.
    > Resume from: Phase 2, Task 1 (Frontend login form)
    ```
+
+   **CODE SIMPLIFICATION PASS (After Every Phase)**: After writing the Phase Summary, run `Task(code-simplifier:code-simplifier)` over the phase's changed files. Point it at the files listed in the Phase Summary. Run tests after to confirm nothing broke, then commit any changes: `refactor(scope): simplify phase N implementation`.
 
 3. **Incremental Commits (Orchestrator Responsibility)**
 
@@ -508,6 +510,7 @@ See the `orchestrating-swarms` skill for detailed swarm patterns and best practi
 
 - Follow existing patterns
 - Write tests for new code
+- Run code-simplifier after each phase to prevent complexity creep
 - Run linting before pushing
 - Use reviewer agents for complex/risky changes only
 
@@ -526,6 +529,7 @@ Before creating PR, verify:
 - [ ] Tests pass (run project's test command)
 - [ ] Linting passes
 - [ ] Code follows existing patterns
+- [ ] Code-simplifier ran after each phase
 - [ ] Figma designs match implementation (if applicable)
 - [ ] Before/after screenshots captured and uploaded (for UI changes)
 - [ ] Commit messages follow conventional format

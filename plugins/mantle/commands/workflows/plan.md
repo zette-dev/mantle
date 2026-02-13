@@ -230,15 +230,15 @@ After writing the plan file, use the **AskUserQuestion tool** to present these o
 **Question:** "Plan ready at `[plan_path]`. What would you like to do next?"
 
 **Options:**
-1. **Start `/mantle:work`** - Begin implementing this plan
-2. **Run `/deepen-plan`** - Enhance with parallel research agents for best practices and edge cases
-3. **Create Issue** - Create issue in project tracker (GitHub/Linear)
+1. **Open in editor** - Open the plan file in VS Code/Cursor
+2. **Start `/mantle:work`** - Begin implementing this plan
+3. **Run `/deepen-plan`** - Enhance with parallel research agents for best practices and edge cases
 4. **Simplify** - Reduce detail level
 
 Based on selection:
+- **Open in editor** → Run `code [plan_path]` (not `open` — that defaults to Xcode on macOS)
 - **`/mantle:work`** → Call the /mantle:work command with the plan file path
 - **`/deepen-plan`** → Call the /deepen-plan command with the plan file path
-- **Create Issue** → Detect tracker from CLAUDE.md, use `gh issue create` or Linear MCP
 - **Simplify** → Ask what to simplify, regenerate
 - **Other** (automatically provided) → Accept free text for changes
 
