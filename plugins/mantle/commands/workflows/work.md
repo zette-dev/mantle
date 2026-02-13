@@ -38,7 +38,7 @@ This command takes a work document (plan, specification, or todo file) and execu
 
 2. **Setup Environment**
 
-   First, check the current branch:
+   First, detect the root branch and current branch:
 
    ```bash
    current_branch=$(git branch --show-current)
@@ -50,16 +50,18 @@ This command takes a work document (plan, specification, or todo file) and execu
    fi
    ```
 
-   **If already on a feature branch** (not the default branch):
+   **Confirm the root branch** with the user: "Detected `[default_branch]` as the root branch. Is this correct?" If the user specifies a different branch, use that instead. The confirmed root branch is used for all subsequent operations (pulling, creating branches, PRs).
+
+   **If already on a feature branch** (not the root branch):
    - Ask: "Continue working on `[current_branch]`, or create a new branch?"
    - If continuing, proceed to step 3
    - If creating new, follow Option A or B below
 
-   **If on the default branch**, choose how to proceed:
+   **If on the root branch**, choose how to proceed:
 
    **Option A: Create a new branch**
    ```bash
-   git pull origin [default_branch]
+   git pull origin [root_branch]
    git checkout -b feature-branch-name
    ```
    **Branch naming:** If the work originates from a Linear issue, use `get_issue_git_branch_name` from the Linear MCP to get the branch name. Otherwise, use a meaningful name based on the work (e.g., `feat/user-authentication`, `fix/email-validation`).
@@ -67,17 +69,17 @@ This command takes a work document (plan, specification, or todo file) and execu
    **Option B: Use a worktree (recommended for parallel development)**
    ```bash
    skill: git-worktree
-   # The skill will create a new branch from the default branch in an isolated worktree
+   # The skill will create a new branch from the root branch in an isolated worktree
    ```
 
-   **Option C: Continue on the default branch**
+   **Option C: Continue on the root branch**
    - Requires explicit user confirmation
-   - Only proceed after user explicitly says "yes, commit to [default_branch]"
-   - Never commit directly to the default branch without explicit permission
+   - Only proceed after user explicitly says "yes, commit to [root_branch]"
+   - Never commit directly to the root branch without explicit permission
 
    **Recommendation**: Use worktree if:
    - You want to work on multiple features simultaneously
-   - You want to keep the default branch clean while experimenting
+   - You want to keep the root branch clean while experimenting
    - You plan to switch between branches frequently
 
 3. **Verify Subagent Permissions**
