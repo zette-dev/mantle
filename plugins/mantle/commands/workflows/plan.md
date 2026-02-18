@@ -1,5 +1,6 @@
 ---
 name: mantle:plan
+model: opus
 description: Transform feature descriptions into well-structured implementation plans with codebase understanding and architecture focus
 argument-hint: "[feature description, issue URL, or ticket ID]"
 ---
