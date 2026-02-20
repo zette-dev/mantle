@@ -398,7 +398,7 @@ Task({
 ### Workflow Agents
 ```javascript
 Task({
-  subagent_type: "mantle:workflow:bug-reproduction-validator",
+  subagent_type: "mantle:bug-reproduction-validator",
   description: "Validate bug",
   prompt: "Reproduce and validate this reported bug: [description]"
 })

@@ -12,8 +12,6 @@ Run these slash commands in order. Do not do anything else.
 4. `/mantle:work`
 5. `/mantle:review`
 6. `/mantle:resolve_todo_parallel`
-7. `/mantle:test-browser`
-8. `/mantle:feature-video`
 9. Output `<promise>DONE</promise>` when video is in PR
 
 Start with step 1 now.
