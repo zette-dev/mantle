@@ -50,6 +50,6 @@ Load the relevant reference based on the task at hand:
 ### Simulator Testing
 
 - Use the **Marionette Flutter MCP** to test features in the running simulator
-- Check the project Makefile for the command to start the app (wraps [run-debug-mcp.sh](./scripts/run-debug-mcp.sh))
-- Read `.marionette_uri` to `connect`, then use MCP tools: `hot_reload`, `take_screenshots`, `get_interactive_elements`, `tap`, `enter_text`, `scroll_to`, `get_logs`
+- Check the project Makefile for the command to start the app
+- Read `.wire-state` to `connect`, then use MCP tools: `hot_reload`, `take_screenshots`, `get_interactive_elements`, `tap`, `enter_text`, `scroll_to`, `get_logs`
 - After every code change: hot reload, navigate to affected screen, screenshot to verify
