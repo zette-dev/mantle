@@ -1,28 +1,168 @@
 ---
 name: mantle:validate
-description: Validate full-stack changes — ensure services are running, reload changed code, run checks, verify visually via Marionette.
-argument-hint: "[description of what to test, link to plan file, etc]"
+description: "Validate changes by detecting what needs testing from code diffs, running a plan's test checklist, or exercising a specific experience in the iOS simulator."
+argument-hint: "[plan file path, experience description, or leave empty to auto-detect]"
 ---
 
 # Validate
 
-Validates changes by exercising the running app directly in the iOS simulator and running automated quality checks.
+<input> #$ARGUMENTS </input>
 
-## When to Use This Skill
+Determine which path to take based on the input:
 
-Invoke this skill when:
-- User runs `/validate` with no args — run the full automated suite
-- User runs `/validate <experience description>` — manually test that flow in the simulator
-- User asks to "test the login experience", "validate the garage screen", "check that valuation works", etc.
-- After completing a feature to confirm it works end-to-end
+- **Empty** → Path A: auto-detect changes and generate a test list
+- **Plan file path** (`.md` file in `docs/plans/`) → Path B: run the test plan in that document
+- **Experience description** (any other text) → Path C: drive the live simulator via Marionette
+
+---
+
+## Path A: Auto-Detect Changes
+
+### Step 1: Gather Changes
+
+Run these in parallel:
+
+```bash
+git diff --name-only HEAD           # uncommitted changes
+git diff --name-only main...HEAD    # changes since branching from main (or master)
+git status --short                  # untracked/staged files
+```
+
+If on main with no branch diff, use only uncommitted changes. Compile a deduplicated list of all changed files.
+
+### Step 2: Understand What Changed
+
+Launch one `repo-research-analyst` agent:
+
+```
+Task repo-research-analyst: "Analyze these changed files and summarize what behavior was added or modified:
+
+Changed files:
+[list from Step 1]
+
+For each file:
+1. What does this code do?
+2. What user-facing or system behavior does it affect?
+3. What are the key code paths introduced or changed?
+4. What could break if this is wrong?
+
+Return a concise summary grouped by feature/area, not by file."
+```
+
+### Step 3: Generate Test List
+
+From the agent's summary, produce a concrete test list. Each item should be:
+- A specific action a person or automated test can perform
+- Linked to the behavior it validates
+- Labeled as: **manual**, **automated**, or **either**
+
+Group by feature area:
+
+```
+### [Feature Area]
+- [ ] [manual] Describe the exact action and expected result
+- [ ] [automated] Describe what the test should assert
+```
+
+### Step 4: Confirm with User
+
+Use AskUserQuestion with multiSelect to let the user pick which items to validate. Include an "All of the above" option.
+
+Wait for the user's selection before proceeding.
+
+### Step 5: Execute
+
+For each confirmed test item:
+- **Automated** — Run it. Report pass/fail with output.
+- **Manual (simulator)** — Continue to Step 1 of Path C below using the test item as the experience description.
+- **Manual (non-simulator)** — Describe exactly what to do. Wait for user confirmation before moving on.
+
+Track results:
+```
+✅ [test description] — passed
+❌ [test description] — FAILED: [what happened]
+⏭️ [test description] — skipped
+```
+
+### Step 6: Report
+
+```markdown
+## Validation Report
+
+**Branch:** [branch name]
+**Changed files:** [count]
+**Tests run:** [count]
+
+### Results
+- ✅ Passed: [count]
+- ❌ Failed: [count]
+- ⏭️ Skipped: [count]
+
+### Failures
+[For each failure: what was tested, what happened, suggested fix]
+```
+
+---
+
+## Path B: Plan Document
+
+### Step 1: Read the Plan
+
+Read the full plan file. Extract all `#### Testing` sections and `- [ ]` test items. If no testing sections are found, switch to Path A using the plan's branch context.
+
+### Step 2: Confirm Scope
+
+Present the extracted test list grouped by phase. Use AskUserQuestion with multiSelect:
+- All tests
+- Only unchecked (incomplete) tests
+- Specific phases — list each as an option
+
+### Step 3: Execute Tests
+
+For each selected test:
+- **Automated** — Run it. Report pass/fail.
+- **Manual (simulator)** — Proceed through Path C steps using the test description.
+- **Manual (other)** — Describe what to do. Wait for user confirmation.
+
+As each test completes, update the plan file immediately:
+- `- [ ]` → `- [x]` for passing tests
+- Leave `- [ ]` for failures, add inline note: `— ❌ failed: [reason]`
+
+### Step 4: Update Plan
+
+Append to the plan's Progress Log:
+```markdown
+- {today}: Validation run — [N] passed, [M] failed. [Brief summary or "All tests passing."]
+```
+
+### Step 5: Report
+
+```markdown
+## Validation Report
+
+**Plan:** [plan file path]
+**Tests run:** [count]
+
+### Results
+- ✅ Passed: [count]
+- ❌ Failed: [count]
+- ⏭️ Skipped: [count]
+
+### Plan Updated
+Checked off [N] tests in [plan file path]. [M] tests still open.
+```
+
+---
+
+## Path C: Experience Description
+
+Validates a specific user experience by driving the live iOS simulator via Marionette and running automated checks.
 
 **When an experience is described, your primary job is to drive the live simulator via Marionette MCP and confirm the flow works.** Automated checks are secondary.
 
 > **Important:** Marionette MCP tools are only available in the main conversation context. Do NOT delegate simulator interaction to a subagent.
 
----
-
-## Step 1 — Bring the System Up
+### Step 1 — Bring the System Up
 
 ```bash
 wire status --json    # check current state
@@ -53,7 +193,7 @@ Log tags: `[DB]`, `[API]`, `[MOBILE]`
 
 ---
 
-## Step 2 — Understand the Code (when testing an experience)
+### Step 2 — Understand the Code
 
 Before touching the simulator, read the code for the described experience:
 - Which screens and routes are involved
@@ -67,7 +207,7 @@ Then write out a short test plan — the specific scenarios you'll exercise.
 
 ---
 
-## Step 3 — Connect to the Simulator
+### Step 3 — Connect to the Simulator
 
 First confirm the mobile service is healthy:
 
@@ -94,7 +234,7 @@ If `.wire-state` has no `MOBILE_FLUTTER_URI`, the mobile app isn't running — r
 
 ---
 
-## Step 4 — Execute the Test Plan
+### Step 4 — Execute the Test Plan
 
 ### Discover the current screen
 ```
@@ -122,7 +262,7 @@ After any interaction that triggers an API call, check `logs/session.log` for `[
 
 ---
 
-## Step 5 — Run Automated Checks
+### Step 5 — Run Automated Checks
 
 Run checks scoped to what changed:
 
@@ -138,7 +278,7 @@ Run checks scoped to what changed:
 
 ---
 
-## Step 6 — Report Findings
+### Step 6 — Report Findings
 
 Summarize:
 - Each scenario tested and what happened (with screenshots)

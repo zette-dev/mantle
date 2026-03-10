@@ -7,7 +7,7 @@ argument-hint: "[feature description, issue URL, or ticket ID]"
 
 # Development Planning
 
-Research and plan only — never write implementation code.
+**CRITICAL: This command produces a plan document ONLY. Do NOT write any implementation code, create any source files, or begin executing the plan. Your job ends when the plan file is written and the user has been presented with next-step options. Stop after Phase 6.**
 
 Plan features systematically: gather requirements → understand the codebase → ask clarifying questions → design architecture → produce a self-contained plan. Use TodoWrite to track phases.
 
@@ -119,7 +119,7 @@ Write the plan file following the structure in [plan-template.md](plan-template.
    - Complexity: simple / moderate / complex
 4. Ask user for final approval
 
-**After approval**, use AskUserQuestion:
+**After approval**, use AskUserQuestion to present next steps, then **STOP — do not take any further action**:
 
 **Question:** "Plan ready at `[plan_path]`. What next?"
 
@@ -128,3 +128,5 @@ Write the plan file following the structure in [plan-template.md](plan-template.
 2. **Start `/mantle:work`** — Begin implementing
 3. **Run `/deepen-plan`** — Enhance with research agents
 4. **Simplify** — Reduce detail level
+
+**Your work is done after presenting these options. Wait for the user to explicitly invoke the next command. Do not proceed with implementation, do not run `/mantle:work`, do not write any code.**

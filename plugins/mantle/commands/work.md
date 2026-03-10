@@ -86,7 +86,7 @@ Tasks run sequentially — each subagent builds on the prior one's work.
 
 4. **After Each Phase**
 
-   Write a Phase Summary (see [work-templates.md](work-templates.md)), then run `Task(code-simplifier:code-simplifier)` over the phase's changed files. Run tests to confirm nothing broke, then commit: `refactor(scope): simplify phase N implementation`.
+   Write a Phase Summary (see [work-templates.md](work-templates.md)), then run `/simplify` over the phase's changed files. Run tests to confirm nothing broke, then commit: `refactor(scope): simplify phase N implementation`.
 
 5. **Commits**
 
@@ -96,10 +96,7 @@ Tasks run sequentially — each subagent builds on the prior one's work.
 
 ## Phase 3: Quality Check
 
-1. **Code Simplifier** (mandatory) — Run on all changed files to catch unnecessary complexity across the full changeset. Commit simplifications before proceeding.
-   ```
-   Task(pr-review-toolkit:code-simplifier): "Simplify all changes on this branch"
-   ```
+1. **Code Simplifier** (mandatory) — Run `/simplify` on all changed files to catch unnecessary complexity across the full changeset. Commit simplifications before proceeding.
 
 2. **Tests and Linting** — Run the project's full test suite and linter. Commit any lint reformats — don't discard them.
 

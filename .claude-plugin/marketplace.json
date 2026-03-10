@@ -6,13 +6,13 @@
   },
   "metadata": {
     "description": "Plugin marketplace for Claude Code extensions",
-    "version": "1.0.0"
+    "version": "0.1.0"
   },
   "plugins": [
     {
       "name": "mantle",
       "description": "AI-powered development tools that get smarter with every use. Make each unit of engineering work easier than the last. Includes 20 specialized agents, 26 commands, and 12 skills.",
-      "version": "0.0.3",
+      "version": "0.0.5",
       "author": {
         "name": "Nate Frechette",
         "url": "https://github.com/natefrechette",

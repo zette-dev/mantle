@@ -8,7 +8,9 @@
       "Bash(git:*)",
       "mcp__plugin_claude-mem_mcp-search__get_observations",
       "WebFetch(domain:github.com)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(fvm:*)",
+      "Bash(make:*)"
     ]
   },
   "preferredNotifChannel": "ghostty"

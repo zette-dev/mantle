@@ -1,6 +1,6 @@
 {
   "name": "mantle",
-  "version": "3.0.0",
+  "version": "1.0.0",
   "description": "AI-powered development tools. 13 agents, 6 commands, 11 skills, 1 MCP server for code review, research, and workflow automation.",
   "author": {
     "name": "Nate Frechette",
