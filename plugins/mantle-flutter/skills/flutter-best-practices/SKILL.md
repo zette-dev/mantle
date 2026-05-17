@@ -27,6 +27,7 @@ Load the relevant reference based on the task at hand:
 - Use design system components (`AppSpacing`, `AppRadius`) instead of raw Flutter primitives
 - Config values via `--dart-define-from-file`, never hardcoded
 - Logging via `logger.I` / `logger.E` from `zette_utils` (integrates with Sentry)
+- **ARB files:** After editing `.arb` files, run `flutter gen-l10n` to regenerate localization code. Never manually edit generated locale/localization Dart files.
 
 ### State Management
 

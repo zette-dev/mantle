@@ -59,10 +59,14 @@ Tasks run sequentially — each subagent builds on the prior one's work.
      b. Determine: delegate to subagent or do inline?
      c. If delegating: launch Task(general-purpose) — see work-templates.md
      d. Read the subagent's summary response
-     e. Update the plan: check off item and write checkpoint from summary
+     e. Update the plan file (REQUIRED, both steps):
+        - Flip the task's checkbox from `- [ ]` to `- [x]` in place
+        - Append a checkpoint note directly under it (see work-templates.md)
      f. Mark task as completed in TodoWrite
      g. Commit when a logical unit is complete and tests pass
    ```
+
+   **Checkbox discipline:** Every plan task is written as `- [ ]`. The orchestrator MUST flip it to `- [x]` the moment the task completes — before moving to the next task, before committing, before any other plan edit. A plan with completed work but unchecked boxes is a bug. If a task is partially complete or blocked, leave it `- [ ]` and add a checkpoint note explaining the state.
 
    **When to delegate vs do inline:** Default to delegating. Only do trivial changes inline (single line edits, config value changes, git operations, editing the plan file itself).
 
@@ -77,6 +81,7 @@ Tasks run sequentially — each subagent builds on the prior one's work.
    - Do NOT construct detailed context in the prompt — the plan file IS the context
    - DO update the plan with checkpoint notes after each subagent
    - DO keep tasks sequential — no parallel execution
+   - DO remind subagents in their prompt: no plan-derived comments in source files (task IDs, phase references, restated requirements, "added for X" notes). Plan context belongs in checkpoints and the PR, not the code. The template in [work-templates.md](work-templates.md) already enforces this — keep it intact.
 
 3. **Handling Failures**
 

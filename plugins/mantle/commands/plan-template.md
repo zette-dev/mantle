@@ -27,19 +27,19 @@ patterns, and constraints discovered during research.
 - Best practices to follow (reference docs/solutions/, CLAUDE.md rules, or external guides)
 
 ## Tasks
-Break into phases where each phase is independently testable.
+Break into phases where each phase is independently testable. Every task MUST be a GitHub-style checkbox (`- [ ]`) so `/mantle:work` can flip it to `- [x]` on completion. Number tasks (`**1.1**`, `**1.2**`, ...) so checkpoints can reference them.
 
 ### Phase 1: {Foundation}
-- [ ] Task description → `file/to/create.ts` (pattern: `file/to/follow.ts`)
-- [ ] Task description → `file/to/modify.ts`
+- [ ] **1.1** Task description → `file/to/create.ts` (pattern: `file/to/follow.ts`)
+- [ ] **1.2** Task description → `file/to/modify.ts`
 
 #### Testing (unit)
 - [ ] Test scenario 1
 - [ ] Test scenario 2
 
 ### Phase 2: {Core Implementation}
-- [ ] Task description → `agent:general-purpose`
-- [ ] Task description (no agent needed for simple tasks)
+- [ ] **2.1** Task description → `agent:general-purpose`
+- [ ] **2.2** Task description (no agent needed for simple tasks)
 
 #### Testing (integration)
 - [ ] Test scenario 1

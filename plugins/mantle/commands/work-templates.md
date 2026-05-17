@@ -30,6 +30,18 @@ Read the plan at: `[absolute path to plan file]`
 5. Run the test command and fix any failures
 6. Do NOT modify the plan file — the orchestrator handles that
 
+## Code Comments — Critical
+Default to writing NO comments. The plan is documentation; the code is not.
+
+Specifically, do NOT write comments that:
+- Reference the plan, task ID, phase, or checkpoint (e.g. `// Task 1.1: ...`, `// Per plan, ...`, `// Implements Phase 2`)
+- Restate the task description or requirements in prose
+- Explain what the code does when well-named identifiers already do that
+- Narrate the implementation ("First we do X, then Y") or describe call sites ("used by AuthController")
+- Justify the change relative to the work session ("added for the new login flow", "addresses ticket HM-523")
+
+Only write a comment when the WHY is non-obvious to a future reader with no knowledge of this plan: a hidden constraint, a subtle invariant, a workaround for a specific upstream bug. If removing the comment wouldn't confuse that reader, don't write it. Task context, motivation, and decisions belong in the checkpoint summary you return to the orchestrator and in the eventual PR description — NOT in source files.
+
 ## Respond With a Structured Summary
 When done, return ONLY this (not file contents):
 1. **Files changed**: list of created/modified/deleted files
@@ -43,7 +55,7 @@ When done, return ONLY this (not file contents):
 
 ## Checkpoint Format
 
-After each subagent completes, check off the item and write a checkpoint note:
+After each subagent completes, edit the plan file to (1) flip the task's checkbox from `- [ ]` to `- [x]` and (2) append a checkpoint note directly beneath it. Both steps happen in the same edit — never one without the other.
 
 ```markdown
 - [x] **1.1** Create user model with Argon2 password hashing
@@ -52,6 +64,8 @@ After each subagent completes, check off the item and write a checkpoint note:
   > Decision: Used dart_argon2 over bcrypt for WASM compat.
   > Next: Wire up to AuthController.login().
 ```
+
+**Partial / blocked tasks:** Leave the checkbox `- [ ]` and add a checkpoint note describing what's done and what remains. Only check the box when the task is fully complete and tests pass.
 
 Each checkpoint MUST include:
 1. **Timestamp**
